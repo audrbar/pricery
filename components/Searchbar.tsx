@@ -8,7 +8,14 @@ const Searchbar = () => {
         onSubmit={handleSubmit}
         action=""
     >
-
+        <input
+            type="text"
+            placeholder="Enter product link"
+            className="searchbar-input"
+        />
+        <button type="submit" className="searchbar-btn">
+            Search
+        </button>
     </form>
   )
 }
