@@ -18,7 +18,7 @@ export async function generateEmailBody(
     // Shorten the product title
     const shortenedTitle =
         product.title.length > 20
-            ? `${product.title.substring(0, 20)}...`
+            ? `${product.title.substring(0, 20)}`
             : product.title;
 
     let subject = "";
@@ -29,7 +29,7 @@ export async function generateEmailBody(
             subject = `Welcome to Price Tracking for ${shortenedTitle}`;
             body = `
         <div>
-          <h2>Welcome to PriceWise 🚀</h2>
+          <h2>Welcome to PriceRy</h2>
           <p>You are now tracking ${product.title}.</p>
           <p>Here's an example of how you'll receive updates:</p>
           <div style="border: 1px solid #ccc; padding: 10px; background-color: #f8f8f8;">
@@ -85,7 +85,7 @@ const transporter = nodemailer.createTransport({
     service: 'hotmail',
     port: 2525,
     auth: {
-        user: 'javascriptmastery@outlook.com',
+        user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD,
     },
     maxConnections: 1
@@ -93,7 +93,7 @@ const transporter = nodemailer.createTransport({
 
 export const sendEmail = async (emailContent: EmailContent, sendTo: string[]) => {
     const mailOptions = {
-        from: 'javascriptmastery@outlook.com',
+        from: process.env.EMAIL_USER,
         to: sendTo,
         html: emailContent.body,
         subject: emailContent.subject,
